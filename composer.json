@@ -1,19 +1,33 @@
 {
-    "name": "laravel/lumen",
+    "name": "osenco/jiru",
     "description": "The Laravel Lumen Framework.",
     "keywords": ["framework", "laravel", "lumen"],
     "license": "MIT",
     "type": "project",
     "require": {
         "php": "^7.2.5",
-        "laravel/lumen-framework": "^7.0"
+        "laravel/lumen-framework": "^7.0",
+        "guzzlehttp/guzzle": "^6.5",
+        "laravel-notification-channels/africastalking": "^2.0",
+        "laravel/helpers": "^1.2",
+        "laravel/tinker": "^2.0",
+        "osenco/mpesa": "^1.20",
+        "osenco/updater": "dev-master"
     },
     "require-dev": {
+        "facade/ignition": "^2.0",
         "fzaninotto/faker": "^1.9.1",
         "mockery/mockery": "^1.3.1",
+        "nunomaduro/collision": "^4.1",
         "phpunit/phpunit": "^8.5"
     },
     "autoload": {
+        "files": [
+            "app/Helpers/Payments.php",
+            "app/Helpers/Settings.php",
+            "app/Helpers/Users.php",
+            "app/Helpers/General.php"
+        ],
         "classmap": [
             "database/seeds",
             "database/factories"
