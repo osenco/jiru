@@ -113,7 +113,6 @@ class CustomerController extends Controller
      */
     public function destroy($customer)
     {
-
         try {
             $delete = Customer::find($customer)->delete();
             $return = $delete
