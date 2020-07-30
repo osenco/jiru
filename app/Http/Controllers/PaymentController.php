@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Payment;
+use App\WebHook;
 use App\Customer;
 use Osen\Mpesa\C2B;
 use Osen\Mpesa\STK;
@@ -19,12 +20,12 @@ class PaymentController extends Controller
     {
         STK::init(
             array(
-                'env'              => setting('mpesa-c2b', 'env', 'sandbox'),
-                'type'             => setting('mpesa-c2b', 'type', 4),
-                'shortcode'        => setting('mpesa-c2b', 'shortcode', '174379'),
-                'key'              => setting('mpesa-c2b', 'key', 'l6jE7kgV4lCtNH4aveMueR9QdGkbutfR'),
-                'secret'           => setting('mpesa-c2b', 'secret', '5slRuAafb4Gk7Ogo'),
-                'passkey'          => setting('mpesa-c2b', 'passkey', 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'),
+                'env'              => setting('mpesa_c2b', 'env', 'sandbox'),
+                'type'             => setting('mpesa_c2b', 'type', 4),
+                'shortcode'        => setting('mpesa_c2b', 'shortcode', '174379'),
+                'key'              => setting('mpesa_c2b', 'key', 'l6jE7kgV4lCtNH4aveMueR9QdGkbutfR'),
+                'secret'           => setting('mpesa_c2b', 'secret', '5slRuAafb4Gk7Ogo'),
+                'passkey'          => setting('mpesa_c2b', 'passkey', 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'),
                 'validation_url'   => route('validate'),
                 'confirmation_url' => route('confirm'),
                 'callback_url'     => route('reconcile'),
@@ -35,13 +36,13 @@ class PaymentController extends Controller
 
         C2B::init(
             array(
-                'env'              => setting('mpesa-c2b', 'env', 'sandbox'),
-                'type'             => setting('mpesa-c2b', 'type', 4),
-                'shortcode'        => setting('mpesa-c2b', 'shortcode', '174379'),
-                'key'              => setting('mpesa-c2b', 'key', 'l6jE7kgV4lCtNH4aveMueR9QdGkbutfR'),
-                'secret'           => setting('mpesa-c2b', 'secret', '5slRuAafb4Gk7Ogo'),
-                'username'         => setting('mpesa-c2b', 'username', ''),
-                'passkey'          => setting('mpesa-c2b', 'passkey', 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'),
+                'env'              => setting('mpesa_c2b', 'env', 'sandbox'),
+                'type'             => setting('mpesa_c2b', 'type', 4),
+                'shortcode'        => setting('mpesa_c2b', 'shortcode', '174379'),
+                'key'              => setting('mpesa_c2b', 'key', 'l6jE7kgV4lCtNH4aveMueR9QdGkbutfR'),
+                'secret'           => setting('mpesa_c2b', 'secret', '5slRuAafb4Gk7Ogo'),
+                'username'         => setting('mpesa_c2b', 'username', ''),
+                'passkey'          => setting('mpesa_c2b', 'passkey', 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'),
                 'validation_url'   => route('validate'),
                 'confirmation_url' => route('confirm'),
                 'callback_url'     => route('reconcile'),
