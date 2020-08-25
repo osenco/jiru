@@ -132,7 +132,7 @@ class PaymentController extends Controller
             $payment->save();
 
             if (settings('notifications_mail', 'notify', 'no') == 'yes') {
-                Notification::route('mail', settings("general_details", "email", "hi@osen.co.ke"))->notify(new PaymentReceivedAdmin($payment));
+                Notification::route('mail', settings("general", "email", "hi@osen.co.ke"))->notify(new PaymentReceivedAdmin($payment));
             }
 
             send_follow_up_text($customer, ['amount' => $payment->amount]);

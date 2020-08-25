@@ -3,13 +3,19 @@
 if (!function_exists('setting')) {
     function setting($option, $key = null, $default = '')
     {
-        $setting = config('services.settings.'.$option, $default);
+        $settings = require(base_path('config/settings.php'));
+        if (is_null($option)) {
+            return $settings;
+        }
+
+        $setting = ($settings[$option] ?? $default);
 
         if ($setting) {
             if (is_null($key)) {
-                return empty($setting->value) ? $default : $setting->value;
+                return $setting;
             } else {
-                return (empty($setting->value[$key]) || is_null($setting->value[$key])) ? $default : $setting->value[$key];
+                $setting = (object)($settings[$option] ?? $default);
+                return (empty($setting->$key) || is_null($setting->$key)) ? $default : $setting->$key;
             }
         }
 
@@ -20,17 +26,19 @@ if (!function_exists('setting')) {
 if (!function_exists('settings')) {
     function settings($option = null, $key = null, $default = '')
     {
+        $settings = require(base_path('config/settings.php'));
         if (is_null($option)) {
-            return config('services.settings', []);
+            return $settings;
         }
 
-        $setting = config('services.settings.'.$option, $default);
+        $setting = ($settings[$option] ?? $default);
 
         if ($setting) {
             if (is_null($key)) {
-                return empty($setting->value) ? $default : $setting->value;
+                return $setting;
             } else {
-                return (empty($setting->value[$key]) || is_null($setting->value[$key])) ? $default : $setting->value[$key];
+                $setting = (object)($settings[$option] ?? $default);
+                return (empty($setting->$key) || is_null($setting->$key)) ? $default : $setting->$key;
             }
         }
 

@@ -1,5 +1,4 @@
 # Mpesa Payments Tracker
-
 This is a micoservice (API backend service) for tracking mpesa payments
 
 ## Installation
@@ -38,18 +37,18 @@ php artisan migrate
 ## Endpoints
 
 The following endpoints are available
-POST `validate`
-POST `confirm`
-POST `results`
-POST `register`
-POST `timeout`
-POST `reconcile`
-POST `reverse`
-POST `status`
+POST `/validate`
+POST `/confirm`
+POST `/results`
+POST `/register`
+POST `/timeout`
+POST `/reconcile`
+POST `/reverse`
+POST `/status`
 
 ### Confirmation & Validation URLs
-POST `validate`
-POST `confirm`
+POST `/validate`
+POST `/confirm`
 
 ### Callback URL
-POST `reconcile`
+POST `/reconcile`

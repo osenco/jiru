@@ -1,0 +1,78 @@
+{
+	"name": "osenco/updater",
+	"description": "Providing an auto-updating functionality for your self-hosted Laravel application.",
+	"license": "MIT",
+	"keywords": [
+		"updater",
+		"self update",
+		"auto-update",
+		"auto update",
+		"update",
+		"laravel",
+		"laravel application",
+		"self-hosted laravel application"
+	],
+	"support": {
+		"issues": "https://github.com/osenco/updater/issues",
+		"source": "https://github.com/osenco/updater"
+	},
+	"authors": [
+		{
+			"name": "Holger Lösken",
+			"email": "holger.loesken@codedge.de",
+			"homepage": "http://codedge.de",
+			"role": "Developer"
+		},
+		{
+			"name": "Osen Concepts",
+			"email": "hi@osen.co.ke",
+			"homepage": "https://osen.co.ke",
+			"role": "Developer"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Osen\\Updater\\": "src/"
+		},
+		"files": [
+			"src/helpers.php"
+		]
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Osen\\Updater\\Tests\\": "tests/"
+		}
+	},
+	"config": {
+		"sort-packages": true
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Osen\\Updater\\UpdaterServiceProvider"
+			],
+			"aliases": {
+				"Updater": "Osen\\Updater\\UpdaterFacade"
+			}
+		}
+	},
+	"require": {
+		"php": ">=7.3",
+		"ext-json": "*",
+		"ext-zip": "*",
+		"laravel/framework": "^6.0|^7.0",
+		"guzzlehttp/guzzle": "6.*"
+	},
+	"require-dev": {
+		"dg/bypass-finals": "^1.1",
+		"mikey179/vfsstream": "^1.6",
+		"mockery/mockery": "^1.3",
+		"orchestra/testbench": "^4.0|^5.0",
+		"phpunit/phpunit": "^8.4|^9.0"
+	},
+	"scripts": {
+		"test": "./vendor/bin/phpunit"
+	}
+}

@@ -138,7 +138,7 @@ if (!function_exists('onfon_balance')) {
                 ]
             );
 
-            return $this->respond($response);
+            return response()->json($response);
         } catch (\Throwable $th) {
             return array('status' => 'failed', 'message' => $th->getMessage());
         }
@@ -181,10 +181,10 @@ if (!function_exists('send_follow_up_text')) {
                 }
             }
 
-            $customized_message = str_replace('{company}', settings("general_details", "name", config("app.name", "Pessa")), $formatted_message);
+            $customized_message = str_replace('{company}', settings("general", "name", config("app.name", "Pessa")), $formatted_message);
 
             if (settings('notifications_sms', 'after_sale_feedback', 'no') == 'yes') {
-                $feedback = str_replace('{phone}', settings("general_details", "phone", "0204404993"), settings('notifications_sms', 'after_sale_feedback_msg'));
+                $feedback = str_replace('{phone}', settings("general", "phone", "0204404993"), settings('notifications_sms', 'after_sale_feedback_msg'));
                 $customized_message .= " {$feedback}";
             }
 
@@ -350,7 +350,7 @@ if (!function_exists('_e')) {
     {
         return $string;
         $tr = new GoogleTranslate();
-        return $tr->setSource()->setTarget(user()->lang ?? settings("general_details", "locale", Config::get('app.locale', 'en')))->translate($string);
+        return $tr->setSource()->setTarget(user()->lang ?? settings("general", "locale", Config::get('app.locale', 'en')))->translate($string);
     }
 }
 if (!function_exists('___')) {
@@ -358,7 +358,7 @@ if (!function_exists('___')) {
     {
         try {
             $tr = new GoogleTranslate();
-            return $tr->setSource()->setTarget(user()->lang ?? settings("general_details", "locale", Config::get('app.locale', 'en')))->translate($string);
+            return $tr->setSource()->setTarget(user()->lang ?? settings("general", "locale", Config::get('app.locale', 'en')))->translate($string);
         } catch(Throwable $th){
             return $string;
         }

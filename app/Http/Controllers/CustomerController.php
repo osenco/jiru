@@ -68,7 +68,7 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show($customer)
+    public function show($customer = null)
     {
         return is_null($customer) ? Customer::all() : Customer::find($customer);
     }
