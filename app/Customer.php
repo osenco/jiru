@@ -55,14 +55,9 @@ class Customer extends Model
         );
     }
 
-    public function activities()
-    {
-        return $this->hasMany(Activity::class);
-    }
-
     public function payments()
     {
-        return $this->hasMany(Activity::class);
+        return $this->hasMany(Payment::class);
     }
 
     public function sms($message = '')

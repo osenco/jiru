@@ -51,14 +51,16 @@ $router->get('upgrade', function (UpdaterManager $updater) {
 });
 
 $router->post('customers', ['as' => 'customers.store', 'uses' => 'CustomerController@store']);
-$router->get('customers[/{id}]', ['as' => 'customers.view', 'uses' => 'CustomerController@show']);
-$router->put('customers[/{id}]', ['as' => 'customers.update', 'uses' => 'CustomerController@update']);
-$router->delete('customers[/{id}]', ['as' => 'customers.delete', 'uses' => 'CustomerController@delete']);
+$router->get('customers', ['as' => 'customers.all', 'uses' => 'CustomerController@index']);
+$router->get('customers/{id}', ['as' => 'customers.view', 'uses' => 'CustomerController@show']);
+$router->put('customers/{id}', ['as' => 'customers.update', 'uses' => 'CustomerController@update']);
+$router->delete('customers/{id}', ['as' => 'customers.delete', 'uses' => 'CustomerController@delete']);
 
 $router->post('payments', ['as' => 'payments.store', 'uses' => 'PaymentController@store']);
-$router->get('payments[/{id}]', ['as' => 'payments.view', 'uses' => 'PaymentController@show']);
-$router->put('payments[/{id}]', ['as' => 'payments.update', 'uses' => 'PaymentController@update']);
-$router->delete('payments[/{id}]', ['as' => 'payments.delete', 'uses' => 'PaymentController@delete']);
+$router->get('payments', ['as' => 'payments.all', 'uses' => 'PaymentController@index']);
+$router->get('payments/{id}', ['as' => 'payments.view', 'uses' => 'PaymentController@show']);
+$router->put('payments/{id}', ['as' => 'payments.update', 'uses' => 'PaymentController@update']);
+$router->delete('payments/{id}', ['as' => 'payments.delete', 'uses' => 'PaymentController@delete']);
 
 $router->get('search/payments', ['as' => 'payments.search', 'uses' => 'PaymentController@search_through']);
 $router->post('request/payment', ['as' => 'payments.request', 'uses' => 'PaymentController@request_payment']);

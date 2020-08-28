@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use NotificationChannels\AfricasTalking\AfricasTalkingChannel;
 use NotificationChannels\AfricasTalking\AfricasTalkingMessage;
 
-class SendFollowUpTextViaAT extends Notification
+class SendAdminTextViaAT extends Notification
 {
     use Queueable;
 

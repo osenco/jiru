@@ -28,7 +28,7 @@ class CustomerController extends Controller
             }
         }
 
-        return $customers->orderBy('created_at', 'desc')->paginate(10);
+        return $customers->orderBy('created_at', 'desc')->paginate($request->query('per_page', 100));
     }
 
     /**
@@ -68,9 +68,9 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show($customer = null)
+    public function show($id)
     {
-        return is_null($customer) ? Customer::all() : Customer::find($customer);
+        return Customer::find($id);
     }
 
     /**
@@ -80,11 +80,12 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $customer)
+    public function update(Request $request, $id)
     {
         $data = $request->all();
         try {
-            $update = Customer::find($customer)->update($data);
+            $customer = Customer::find($id);
+            $update = $customer->update($data);
             $return = $update
                 ? array(
                     'error' => false,
@@ -111,10 +112,10 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy($customer)
+    public function destroy($id)
     {
         try {
-            $delete = Customer::find($customer)->delete();
+            $delete = Customer::find($id)->delete();
             $return = $delete
                 ? array(
                     'error' => false,

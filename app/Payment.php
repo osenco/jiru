@@ -59,9 +59,4 @@ class Payment extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    public function activity()
-    {
-        return $this->hasMany(Activity::class);
-    }
 }

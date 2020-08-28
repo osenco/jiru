@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Notification;
 
 class PaymentController extends Controller
 {
+    protected $payment;
     public function __construct()
     {
         STK::init(
@@ -58,7 +59,22 @@ class PaymentController extends Controller
      */
     public function index(Request $request)
     {
-        return Payment::all();
+
+        $payments = Payment::query();
+
+        if (!empty($request->query())) {
+            foreach ($request->query() as $key => $value) {
+                if ($key == 'page') {
+                    continue;
+                } elseif ($key == 'date') {
+                    $payments->whereDate('created_at', '>=', $value);
+                } else {
+                    $payments->where($key, $value);
+                }
+            }
+        }
+
+        return $payments->orderBy('created_at', 'desc')->paginate($request->query('per_page', 100));
     }
 
     /**
@@ -80,7 +96,7 @@ class PaymentController extends Controller
             }
         }
 
-        return $reports->get();
+        return $reports->orderBy('created_at', 'desc')->paginate($request->query('per_page', 100));;
     }
 
     /**
@@ -278,9 +294,9 @@ class PaymentController extends Controller
      * @param  \App\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function show($payment = null)
+    public function show($id)
     {
-        return is_null($payment) ? Payment::all() : Payment::with(['customer'])->find($payment);
+        return Payment::with(['customer'])->find($id);
     }
 
     /**
